@@ -1,7 +1,11 @@
-import './App.css'
+import './styles/index.css'
 
 function App() {
-  return <h1>Test</h1>
+  return (
+    <div className="bg-[#0A0A0A]">
+      <h1>Test</h1>
+    </div>
+  )
 }
 
 export default App
