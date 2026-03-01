@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
-const navItems = ['Projects', 'Technical Skillset', 'Thoughts']
+const navItems = [
+  { label: 'Projects', id: 'projects' },
+  { label: 'Technical Skillset', id: 'skills' },
+  { label: 'Thoughts', id: 'thoughts' }
+]
 
 const navAnimation = {
   initial: { y: -100 },
@@ -17,14 +21,14 @@ function Logo() {
   )
 }
 
-function NavLink({ item, onClick }: { item: string; onClick?: () => void }) {
+function NavLink({ item, onClick }: { item: { label: string; id: string }; onClick?: () => void }) {
   return (
     <a
-      href={`#${item.toLowerCase()}`}
+      href={`#${item.id}`}
       onClick={onClick}
       className="text-[#e0e7ff] relative group cursor-pointer"
     >
-      {item}
+      {item.label}
       <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#00FF88] to-[#38BDF8] transition-all duration-300 group-hover:w-full" />
     </a>
   )
@@ -39,8 +43,8 @@ function NavLinks() {
     <div className="hidden md:flex items-center gap-6">
       {navItems.flatMap((item, index) =>
         index === 0
-          ? [<NavLink key={item} item={item} />]
-          : [<NavSeparator key={`sep-${index}`} />, <NavLink key={item} item={item} />]
+          ? [<NavLink key={item.id} item={item} />]
+          : [<NavSeparator key={`sep-${index}`} />, <NavLink key={item.id} item={item} />]
       )}
     </div>
   )
@@ -85,7 +89,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         >
           <div className="flex flex-col items-center gap-7 py-7 px-8">
             {navItems.map((item) => (
-              <NavLink key={item} item={item} onClick={onClose} />
+              <NavLink key={item.id} item={item} onClick={onClose} />
             ))}
           </div>
         </motion.div>
