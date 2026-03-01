@@ -77,7 +77,7 @@ function SectionTitle() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-[40px] font-bold text-gradient-white text-center mb-16"
+      className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-gradient-white text-center mb-8 sm:mb-12 lg:mb-16"
     >
       Curated Projects
     </motion.h2>
@@ -104,7 +104,7 @@ function TerminalWindow({ routes }: { routes: Route[] }) {
       </div>
 
       {/* Terminal Output */}
-      <div className="p-5 font-['JetBrains_Mono'] text-sm space-y-1.5">
+      <div className="p-3 sm:p-4 lg:p-5 font-['JetBrains_Mono'] text-[10px] sm:text-xs lg:text-sm space-y-1.5 overflow-x-auto">
         {/* Command */}
         <div>
           <span className="text-[#00FF88]">$ </span>
@@ -132,9 +132,9 @@ function TerminalWindow({ routes }: { routes: Route[] }) {
 
         {/* Routes as request logs */}
         {routes.map((route) => (
-          <div key={`${route.method}-${route.path}`} className="flex items-center gap-2">
+          <div key={`${route.method}-${route.path}`} className="flex items-center gap-1.5 sm:gap-2">
             <span
-              className="font-bold w-14 shrink-0"
+              className="font-bold w-12 sm:w-14 shrink-0"
               style={{ color: methodColors[route.method] }}
             >
               {route.method}
@@ -172,7 +172,7 @@ function FeaturedProjectInfo({
         <h3 className="text-[28px] text-gradient-white mb-4">{title}</h3>
         <p className="text-[#c7d2fe] leading-relaxed">{description}</p>
       </div>
-      <div>
+      <div className="mt-5 sm:mt-0">
         <ul className="flex flex-wrap gap-2.5 mb-5">
           {tech.map((t) => (
             <li key={t.name}>
@@ -207,9 +207,9 @@ function FeaturedProject({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="glass-card rounded-[24px] p-10 mb-10"
+      className="glass-card rounded-[24px] p-5 sm:p-8 lg:p-10 mb-10"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
         <TerminalWindow routes={routes} />
         <FeaturedProjectInfo
           title={title}
@@ -363,7 +363,7 @@ function ProjectsGrid() {
 
 export function Projects() {
   return (
-    <section id="projects" aria-label="Curated Projects" className="py-24 px-8">
+    <section id="projects" aria-label="Curated Projects" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-[1440px] mx-auto">
         <SectionTitle />
         <FeaturedProject {...featuredProject} />

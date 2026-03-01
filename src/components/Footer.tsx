@@ -6,7 +6,7 @@ export function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="py-10 px-8"
+      className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8"
       style={{
         borderTop: '1px solid rgba(0, 255, 136, 0.2)',
         background: 'rgba(10, 10, 10, 0.5)',
