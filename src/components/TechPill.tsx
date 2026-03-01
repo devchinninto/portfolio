@@ -14,33 +14,19 @@ export function TechPill({ icon, name, emoji = false }: TechPillProps) {
   return (
     <motion.span
       whileHover={{ y: -2, scale: 1.05 }}
-      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full cursor-default"
-      style={{
-        background: 'rgba(56, 189, 248, 0.08)',
-        border: '1px solid rgba(56, 189, 248, 0.2)',
-        backdropFilter: 'blur(10px)'
-      }}
+      className="inline-flex items-center gap-2 px-3 py-1 rounded-full cursor-default bg-white/5 border border-white/10"
+      style={{ backdropFilter: 'blur(10px)' }}
     >
-      <span
-        className={`w-[18px] h-[18px] shrink-0 flex items-center justify-center rounded ${
-          emoji || isComponent
-            ? ''
-            : 'bg-gradient-to-br from-[rgba(56,189,248,0.2)] to-[rgba(0,255,136,0.2)]'
-        }`}
-      >
+      <span className="w-[16px] h-[16px] shrink-0 flex items-center justify-center">
         {IconComponent ? (
-          <IconComponent size={16} className="text-[#38BDF8]" />
+          <IconComponent size={14} className="text-[#38BDF8]" />
         ) : (
-          <span
-            className={
-              emoji ? 'text-sm' : 'text-[10px] font-bold text-[#38BDF8]'
-            }
-          >
+          <span className={emoji ? 'text-sm' : 'text-[10px] font-bold text-[#38BDF8]'}>
             {icon as string}
           </span>
         )}
       </span>
-      <span className="text-[13px] font-medium text-white whitespace-nowrap">
+      <span className="text-xs font-medium text-gray-300 whitespace-nowrap">
         {name}
       </span>
     </motion.span>

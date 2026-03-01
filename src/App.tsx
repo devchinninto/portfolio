@@ -2,6 +2,7 @@ import { Navigation } from './components/Navigation'
 import { Hero } from './components/Hero'
 import { SkillsSection } from './components/SkillsSection'
 import { Projects } from './components/Projects'
+import { Footer } from './components/Footer'
 import './styles/index.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Hero />
         <SkillsSection />
         <Projects />
+        <Footer />
       </main>
     </div>
   )

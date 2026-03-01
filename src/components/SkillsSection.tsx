@@ -26,9 +26,9 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
     skills: [
+      { icon: RiJavaLine, name: 'Java' },
       { icon: SiJavascript, name: 'JavaScript' },
-      { icon: SiTypescript, name: 'TypeScript' },
-      { icon: RiJavaLine, name: 'Java' }
+      { icon: SiTypescript, name: 'TypeScript' }
     ]
   },
   {
@@ -37,9 +37,10 @@ const skillCategories: SkillCategory[] = [
       { icon: IoLogoNodejs, name: 'Node.js' },
       { icon: SiFastify, name: 'Fastify' },
       { icon: SiExpress, name: 'Express' },
-      { icon: SiPostgresql, name: 'PostgreSQL' },
       { icon: TbBrandMysql, name: 'MySQL' },
-      { icon: SiPrisma, name: 'Prisma' }
+      { icon: FaDocker, name: 'Docker' },
+      { icon: SiPrisma, name: 'Prisma' },
+      { icon: SiPostgresql, name: 'PostgreSQL' }
     ]
   },
   {
@@ -55,7 +56,6 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Dev Tools & Others',
     skills: [
-      { icon: FaDocker, name: 'Docker' },
       // { icon: SiGithubactions, name: 'GitHub Actions' },
       { icon: FaGitAlt, name: 'Git' },
       { icon: FaGithub, name: 'Github' },
