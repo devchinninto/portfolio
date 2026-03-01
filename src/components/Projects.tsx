@@ -124,7 +124,7 @@ function FeaturedProject({
       className="glass-card rounded-[24px] p-5 sm:p-8 lg:p-10 mb-10"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
-        <TerminalWindow routes={routes} />
+        <TerminalWindow title={title} routes={routes} />
         <FeaturedProjectInfo
           title={title}
           description={description}
@@ -170,7 +170,7 @@ function ProjectCardThumbnail({
         className="h-[200px] rounded-t-[20px] overflow-hidden border-b"
         style={{ borderColor: 'rgba(0, 255, 136, 0.2)' }}
       >
-        <TerminalWindow routes={routes} />
+        <TerminalWindow title={title} routes={routes} />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'motion/react'
-import { SiGithub, SiLinkedin } from 'react-icons/si'
+import { SiGithub, SiLinkedin, SiYoutube } from 'react-icons/si'
 import { FiMail, FiFolder, FiDownload } from 'react-icons/fi'
 import { TerminalShell } from './Terminal'
 
@@ -12,7 +12,12 @@ const SOCIAL_LINKS = [
     href: 'linkedin.com/in/marcellealves-dev',
     icon: SiLinkedin
   },
-  { label: 'Email', href: 'mailto:marcellealves.dev@gmail.com', icon: FiMail }
+  { label: 'Email', href: 'mailto:marcellealves.dev@gmail.com', icon: FiMail },
+  {
+    label: 'YouTube',
+    href: 'https://www.youtube.com/@chinninto',
+    icon: SiYoutube
+  }
 ]
 
 // Main bio content

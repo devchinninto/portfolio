@@ -72,20 +72,6 @@ export const featuredProject: FeaturedProjectData = {
 
 export const projects: ProjectData[] = [
   {
-    title: 'Gaming AI Assistant',
-    description: 'An AI assistant to improve gaming sessions.',
-    tech: [
-      { icon: SiJavascript, name: 'JavaScript' },
-      { icon: FaCss3, name: 'CSS' },
-      { icon: SiGooglegemini, name: 'Gemini' }
-    ],
-    type: 'frontend',
-    githubUrl: '#',
-    demoUrl: '#',
-    imageUrl: 'src/assets/project-1.png',
-    isLive: true
-  },
-  {
     title: 'Daily Diet API',
     description: 'REST API for tracking daily meals and diet compliance.',
     tech: [
@@ -95,7 +81,7 @@ export const projects: ProjectData[] = [
       { icon: SiPostgresql, name: 'PostgreSQL' }
     ],
     type: 'backend',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/devchinninto/daily-diet-api',
     routes: [
       { method: 'POST', path: '/meals' },
       { method: 'GET', path: '/meals' },
@@ -103,18 +89,31 @@ export const projects: ProjectData[] = [
       { method: 'DELETE', path: '/meals/:id' },
       { method: 'GET', path: '/meals/summary' }
     ]
+  },
+  {
+    title: 'Gaming AI Assistant',
+    description: 'An AI assistant to improve gaming sessions.',
+    tech: [
+      { icon: SiJavascript, name: 'JavaScript' },
+      { icon: FaCss3, name: 'CSS' },
+      { icon: SiGooglegemini, name: 'Gemini' }
+    ],
+    type: 'frontend',
+    githubUrl: 'https://github.com/devchinninto/a_gaming',
+    demoUrl: 'https://devchinninto.github.io/a_gaming/',
+    imageUrl: 'src/assets/project-1.png',
+    isLive: true
+  },
+  {
+    title: 'PetShop Scheduling System',
+    description:
+      "Appointment management system for a pet shop, developed as a hands-on project for Rocketseat's Full-Stack Training course.",
+    tech: [
+      { icon: SiJavascript, name: 'JavaScript' },
+      { icon: FaCss3, name: 'CSS' }
+    ],
+    type: 'fullstack',
+    imageUrl: 'src/assets/project-2.gif',
+    githubUrl: 'https://github.com/devchinninto/mundo-pet'
   }
-  // {
-  //   title: 'E-commerce Platform',
-  //   description:
-  //     'Full-stack e-commerce solution with payment processing, inventory management, and admin dashboard.',
-  //   tech: [
-  //     { icon: RiNextjsLine, name: 'Next.js' },
-  //     { icon: SiPrisma, name: 'Prisma' },
-  //     { icon: SiMongodb, name: 'MongoDB' }
-  //   ],
-  //   type: 'fullstack',
-  //   githubUrl: '#',
-  //   demoUrl: '#'
-  // }
 ]
