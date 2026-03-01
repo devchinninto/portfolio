@@ -1,6 +1,7 @@
 import { Navigation } from './components/Navigation'
 import { Hero } from './components/Hero'
 import { SkillsSection } from './components/SkillsSection'
+import { Projects } from './components/Projects'
 import './styles/index.css'
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <main>
         <Hero />
         <SkillsSection />
+        <Projects />
       </main>
     </div>
   )

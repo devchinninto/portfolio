@@ -7,8 +7,8 @@ const HERO_CONTENT = {
   bio: 'Passionate about building scalable backend systems and exploring cloud infrastructure. Currently focusing on modern development practices and DevOps automation.',
   avatar: 'src/assets/pfp.jpg',
   buttons: [
-    { label: 'View Projects', variant: 'primary' as const },
-    { label: 'Download CV', variant: 'outline' as const }
+    { label: 'View Projects', variant: 'primary' as const, href: '#projects' },
+    { label: 'Download CV', variant: 'outline' as const, href: '#' }
   ]
 }
 
@@ -37,10 +37,12 @@ type ButtonVariant = 'primary' | 'outline'
 // Main buttons style
 function HeroButton({
   label,
-  variant
+  variant,
+  href
 }: {
   label: string
   variant: ButtonVariant
+  href: string
 }) {
   const base =
     'px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-medium text-sm sm:text-base transition-all duration-300'
@@ -50,7 +52,7 @@ function HeroButton({
     outline: `${base} border border-[#00FF88] text-[#00FF88] hover:bg-[rgba(0,255,136,0.1)] hover:shadow-[0_4px_20px_rgba(0,255,136,0.2)]`
   }
 
-  return <button className={styles[variant]}>{label}</button>
+  return <a href={href} className={styles[variant]}>{label}</a>
 }
 
 // Avatar / profile photo
