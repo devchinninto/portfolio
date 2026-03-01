@@ -48,7 +48,7 @@ export type ProjectData = {
 export const featuredProject: FeaturedProjectData = {
   title: 'Restaurant Management API',
   description:
-    'A REST API for restaurant management, handling products, tables, table sessions, and orders. Built with Node.js, Express, and TypeScript.',
+    'A REST API for restaurant management, handling products, tables, table sessions, and orders.',
   tech: [
     { icon: SiTypescript, name: 'TypeScript' },
     { icon: IoLogoNodejs, name: 'Node.js' },
@@ -87,8 +87,7 @@ export const projects: ProjectData[] = [
   },
   {
     title: 'Daily Diet API',
-    description:
-      "REST API for tracking daily meals and diet compliance. Built as a practical challenge from Rocketseat's Node.js course.",
+    description: 'REST API for tracking daily meals and diet compliance.',
     tech: [
       { icon: IoLogoNodejs, name: 'Node.js' },
       { icon: SiFastify, name: 'Fastify' },

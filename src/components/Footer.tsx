@@ -15,7 +15,8 @@ export function Footer() {
     >
       <div className="max-w-[1440px] mx-auto text-center">
         <p className="text-sm text-[#00FF88]">
-          © 2026 Marcelle Alves. Crafted with caffeine and code.
+          © 2026 Marcelle Alves. Fueled by caffeine, curiosity, and the
+          occasional existential crisis about semicolons.
         </p>
       </div>
     </motion.footer>

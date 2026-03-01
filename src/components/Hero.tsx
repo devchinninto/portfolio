@@ -1,24 +1,39 @@
+import React from 'react'
 import { motion } from 'motion/react'
 import { SiGithub, SiLinkedin } from 'react-icons/si'
-import { FiMail } from 'react-icons/fi'
+import { FiMail, FiFolder, FiDownload } from 'react-icons/fi'
 import { TerminalShell } from './Terminal'
 
 // Social links
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/marcellealves', icon: SiGithub },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/marcellealves', icon: SiLinkedin },
-  { label: 'Email', href: 'mailto:marcelle@example.com', icon: FiMail }
+  { label: 'GitHub', href: 'https://github.com/devchinninto', icon: SiGithub },
+  {
+    label: 'LinkedIn',
+    href: 'linkedin.com/in/marcellealves-dev',
+    icon: SiLinkedin
+  },
+  { label: 'Email', href: 'mailto:marcellealves.dev@gmail.com', icon: FiMail }
 ]
 
 // Main bio content
 const HERO_CONTENT = {
   name: 'Marcelle Alves',
-  role: 'Software Engineering Student',
-  bio: 'Passionate about building scalable backend systems and exploring cloud infrastructure. Currently focusing on modern development practices and DevOps automation.',
+  role: 'Junior Backend Developer · Software Engineering Student',
+  bio: 'Former translator and functional linguistics specialist turned developer. Focused on clean architecture, REST APIs, and DevOps — driven by curiosity for backend systems, security, and whatever language comes next.',
   avatar: 'src/assets/pfp.jpg',
   buttons: [
-    { label: 'View Projects', variant: 'primary' as const, href: '#projects' },
-    { label: 'Download CV', variant: 'outline' as const, href: '#' }
+    {
+      label: 'View Projects',
+      variant: 'primary' as const,
+      href: '#projects',
+      icon: FiFolder
+    },
+    {
+      label: 'Download CV',
+      variant: 'outline' as const,
+      href: '#',
+      icon: FiDownload
+    }
   ]
 }
 
@@ -31,28 +46,34 @@ const DEV_PROFILE = {
   available: true
 }
 
-
 type ButtonVariant = 'primary' | 'outline'
 
 // Main buttons style
 function HeroButton({
   label,
   variant,
-  href
+  href,
+  icon: Icon
 }: {
   label: string
   variant: ButtonVariant
   href: string
+  icon: React.ElementType
 }) {
   const base =
-    'px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-medium text-sm sm:text-base transition-all duration-300'
+    'inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-medium text-sm sm:text-base transition-all duration-300'
 
   const styles: Record<ButtonVariant, string> = {
     primary: `${base} bg-[#00FF88] text-[#0A0A0A] hover:shadow-[0_4px_20px_rgba(0,255,136,0.4)] hover:scale-105`,
     outline: `${base} border border-[#00FF88] text-[#00FF88] hover:bg-[rgba(0,255,136,0.1)] hover:shadow-[0_4px_20px_rgba(0,255,136,0.2)]`
   }
 
-  return <a href={href} className={styles[variant]}>{label}</a>
+  return (
+    <a href={href} className={styles[variant]}>
+      <Icon size={16} />
+      {label}
+    </a>
+  )
 }
 
 // Avatar / profile photo

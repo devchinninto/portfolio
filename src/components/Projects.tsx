@@ -86,7 +86,7 @@ function FeaturedProjectInfo({
         <h3 className="text-[28px] text-gradient-white mb-4">{title}</h3>
         <p className="text-[#c7d2fe] leading-relaxed">{description}</p>
       </div>
-      <div className="mt-5 sm:mt-0">
+      <div className="mt-5 sm:mt-6 lg:mt-0">
         <ul className="flex flex-wrap gap-2.5 mb-5">
           {tech.map((t) => (
             <li key={t.name}>
@@ -101,7 +101,7 @@ function FeaturedProjectInfo({
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF88] hover:text-[#00FF88] text-gray-300 text-sm font-medium transition-colors w-full justify-center"
         >
           <FaGithub className="w-4 h-4" />
-          View Code
+          View Source
         </a>
       </div>
     </div>
@@ -213,7 +213,7 @@ function ProjectCardActions({
         className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF88] hover:text-[#00FF88] text-gray-300 text-sm font-medium transition-colors"
       >
         <FaGithub className="w-4 h-4" />
-        Code
+        Source
       </a>
       {demoUrl && (
         <a
@@ -223,7 +223,7 @@ function ProjectCardActions({
           className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#00FF88] text-black text-sm font-medium hover:bg-[#00FF88]/90 transition-colors"
         >
           <LuExternalLink className="w-4 h-4" />
-          Demo
+          Visit
         </a>
       )}
     </div>
