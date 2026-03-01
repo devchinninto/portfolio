@@ -25,7 +25,7 @@ const HERO_CONTENT = {
   name: 'Marcelle Alves',
   role: 'Junior Backend Developer · Software Engineering Student',
   bio: 'Former translator and functional linguistics specialist turned developer. Focused on clean architecture, REST APIs, and DevOps — driven by curiosity for backend systems, security, and whatever language comes next.',
-  avatar: 'src/assets/pfp.jpg',
+  avatar: 'src/assets/pfp.png',
   buttons: [
     {
       label: 'View Projects',
