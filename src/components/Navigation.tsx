@@ -1,4 +1,5 @@
-import { motion } from 'motion/react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 const navItems = ['Projects', 'Technical Skillset', 'Thoughts']
 
@@ -16,10 +17,11 @@ function Logo() {
   )
 }
 
-function NavLink({ item }: { item: string }) {
+function NavLink({ item, onClick }: { item: string; onClick?: () => void }) {
   return (
     <a
       href={`#${item.toLowerCase()}`}
+      onClick={onClick}
       className="text-[#e0e7ff] relative group cursor-pointer"
     >
       {item}
@@ -34,7 +36,7 @@ function NavSeparator() {
 
 function NavLinks() {
   return (
-    <div className="flex items-center gap-6">
+    <div className="hidden md:flex items-center gap-6">
       {navItems.flatMap((item, index) =>
         index === 0
           ? [<NavLink key={item} item={item} />]
@@ -44,22 +46,74 @@ function NavLinks() {
   )
 }
 
-function NavContent() {
+function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 cursor-pointer"
+      aria-label="Toggle menu"
+    >
+      <motion.span
+        animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        className="block w-6 h-0.5 bg-[#00FF88] origin-center"
+      />
+      <motion.span
+        animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        className="block w-6 h-0.5 bg-[#00FF88]"
+      />
+      <motion.span
+        animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        className="block w-6 h-0.5 bg-[#00FF88] origin-center"
+      />
+    </button>
+  )
+}
+
+function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.25 }}
+          className="md:hidden overflow-hidden border-t border-[#00FF88]/20"
+        >
+          <div className="flex flex-col items-center gap-7 py-7 px-8">
+            {navItems.map((item) => (
+              <NavLink key={item} item={item} onClick={onClose} />
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
+function NavContent({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
   return (
     <div className="w-full max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
       <Logo />
       <NavLinks />
+      <HamburgerButton isOpen={isOpen} onClick={onToggle} />
     </div>
   )
 }
 
 export function Navigation() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <motion.nav
       {...navAnimation}
       className="fixed top-0 left-0 right-0 z-50 navbar-glass"
     >
-      <NavContent />
+      <NavContent isOpen={isOpen} onToggle={() => setIsOpen((prev) => !prev)} />
+      <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </motion.nav>
   )
 }
