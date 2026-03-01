@@ -1,9 +1,10 @@
+import { Navigation } from './components/Navigation'
 import './styles/index.css'
 
 function App() {
   return (
-    <div className="bg-[#0A0A0A]">
-      <h1>Test</h1>
+    <div className="min-h-screen bg-[#0A0A0A] overflow-x-hidden">
+      <Navigation />
     </div>
   )
 }
