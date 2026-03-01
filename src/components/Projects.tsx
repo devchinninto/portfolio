@@ -21,6 +21,14 @@ const methodColors: Record<HttpMethod, string> = {
   PATCH: '#FBBF24'
 }
 
+const methodStatus: Record<HttpMethod, string> = {
+  GET: '200 OK',
+  POST: '201 Created',
+  PUT: '200 OK',
+  DELETE: '204 No Content',
+  PATCH: '200 OK'
+}
+
 // --- Sub-components ---
 const typeConfig: Record<
   ProjectType,
@@ -76,42 +84,72 @@ function SectionTitle() {
   )
 }
 
-function TerminalRoute({ method, path }: Route) {
-  return (
-    <div>
-      <span style={{ color: methodColors[method] }}>
-        {method.padEnd(4, ' ')}
-      </span>{' '}
-      <span className="text-[#9DF7BD]">{path}</span>
-    </div>
-  )
-}
-
 function TerminalWindow({ routes }: { routes: Route[] }) {
   return (
     <div
-      className="rounded-2xl p-7"
-      style={{
-        background: 'rgba(15, 15, 35, 0.6)',
-        border: '1px solid rgba(0, 255, 136, 0.2)'
-      }}
+      className="w-full rounded-lg overflow-hidden shadow-2xl"
+      style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.07)' }}
     >
-      <div className="flex items-center gap-2 mb-6">
-        <LuTerminal className="w-4 h-4 text-[#00FF88]" />
-        <span
-          className="font-['JetBrains_Mono'] text-[#00FF88] text-sm"
-          style={{ textShadow: '0 0 10px rgba(0, 255, 136, 0.5)' }}
-        >
-          &gt;_ api.restaurant.local
-        </span>
+      {/* Window Header */}
+      <div
+        className="flex items-center gap-3 px-4 py-3"
+        style={{ background: '#1A1A1A', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <div className="flex gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-500" />
+          <div className="w-3 h-3 rounded-full bg-yellow-500" />
+          <div className="w-3 h-3 rounded-full bg-green-500" />
+        </div>
+        <span className="text-xs font-mono text-gray-500">terminal</span>
       </div>
-      <pre className="font-['JetBrains_Mono'] text-sm leading-relaxed">
-        <code className="flex flex-col gap-0.5">
-          {routes.map((route) => (
-            <TerminalRoute key={`${route.method}-${route.path}`} {...route} />
-          ))}
-        </code>
-      </pre>
+
+      {/* Terminal Output */}
+      <div className="p-5 font-['JetBrains_Mono'] text-sm space-y-1.5">
+        {/* Command */}
+        <div>
+          <span className="text-[#00FF88]">$ </span>
+          <span className="text-[#00FF88] font-bold">npm start</span>
+        </div>
+
+        {/* Startup logs */}
+        <div className="text-gray-500">Starting server...</div>
+        <div>
+          <span className="text-[#38BDF8]">[INFO] </span>
+          <span className="text-gray-300">Server running on port </span>
+          <span className="text-[#00FF88]">3000</span>
+        </div>
+        <div>
+          <span className="text-[#00FF88]">[SUCCESS] </span>
+          <span className="text-gray-300">Database connected</span>
+        </div>
+        <div>
+          <span className="text-[#00FF88]">[SUCCESS] </span>
+          <span className="text-gray-300">All routes loaded</span>
+        </div>
+
+        {/* Spacer */}
+        <div className="py-0.5" />
+
+        {/* Routes as request logs */}
+        {routes.map((route) => (
+          <div key={`${route.method}-${route.path}`} className="flex items-center gap-2">
+            <span
+              className="font-bold w-14 shrink-0"
+              style={{ color: methodColors[route.method] }}
+            >
+              {route.method}
+            </span>
+            <span className="text-gray-300">{route.path}</span>
+            <span className="text-gray-600">→</span>
+            <span className="text-gray-500">{methodStatus[route.method]}</span>
+          </div>
+        ))}
+
+        {/* Cursor */}
+        <div className="flex items-center pt-0.5">
+          <span className="inline-block w-2 h-4 bg-gray-400 animate-pulse" />
+        </div>
+      </div>
     </div>
   )
 }
@@ -125,30 +163,33 @@ function FeaturedProjectInfo({
   isLive
 }: Omit<FeaturedProjectData, 'routes'>) {
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between h-full">
       <div>
         <div className="flex items-center gap-2 mb-3">
           <TypePill type={type} />
           {isLive && <LiveBadge />}
         </div>
         <h3 className="text-[28px] text-gradient-white mb-4">{title}</h3>
-        <p className="text-[#c7d2fe] leading-relaxed mb-6">{description}</p>
-        <ul className="flex flex-wrap gap-2.5 mb-6">
+        <p className="text-[#c7d2fe] leading-relaxed">{description}</p>
+      </div>
+      <div>
+        <ul className="flex flex-wrap gap-2.5 mb-5">
           {tech.map((t) => (
             <li key={t.name}>
               <TechPill icon={t.icon} name={t.name} />
             </li>
           ))}
         </ul>
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF88] hover:text-[#00FF88] text-gray-300 text-sm font-medium transition-colors w-full justify-center"
+        >
+          <FaGithub className="w-4 h-4" />
+          View Code
+        </a>
       </div>
-      <a
-        href={githubUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center justify-center gap-2 px-8 py-4 bg-[#00FF88] text-[#0A0A0A] rounded-xl font-medium transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,255,136,0.4)] hover:scale-105 w-full lg:w-auto"
-      >
-        View Code
-      </a>
     </div>
   )
 }
@@ -242,7 +283,7 @@ function ProjectCardActions({
         href={githubUrl}
         target="_blank"
         rel="noreferrer"
-        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-transparent border border-[#00FF88] text-[#00FF88] rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[rgba(0,255,136,0.1)]"
+        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF88] hover:text-[#00FF88] text-gray-300 text-sm font-medium transition-colors"
       >
         <FaGithub className="w-4 h-4" />
         Code
@@ -252,7 +293,7 @@ function ProjectCardActions({
           href={demoUrl}
           target="_blank"
           rel="noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-transparent border border-[#38BDF8] text-[#38BDF8] rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[rgba(56,189,248,0.1)]"
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#00FF88] text-black text-sm font-medium hover:bg-[#00FF88]/90 transition-colors"
         >
           <LuExternalLink className="w-4 h-4" />
           Demo

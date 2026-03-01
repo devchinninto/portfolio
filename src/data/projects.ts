@@ -1,14 +1,12 @@
 import type { IconType } from 'react-icons'
 import { IoLogoNodejs } from 'react-icons/io5'
 import { FaCss3 } from 'react-icons/fa'
-import { AiOutlineHtml5 } from 'react-icons/ai'
-import { RiNextjsLine } from 'react-icons/ri'
+// import { RiNextjsLine } from 'react-icons/ri'
 import {
   SiExpress,
-  SiNestjs,
+  SiFastify,
   SiPostgresql,
-  SiPrisma,
-  SiMongodb,
+  // SiPrisma,
   SiJavascript,
   SiGooglegemini,
   SiSqlite,
@@ -49,7 +47,7 @@ export type ProjectData = {
 export const featuredProject: FeaturedProjectData = {
   title: 'Restaurant Management API',
   description:
-    'A comprehensive RESTful API for restaurant operations including order management, inventory tracking, and customer analytics. Built with scalability and performance in mind.',
+    'A REST API for restaurant management, handling products, tables, table sessions, and orders. Built with Node.js, Express, and TypeScript.',
   tech: [
     { icon: SiTypescript, name: 'TypeScript' },
     { icon: IoLogoNodejs, name: 'Node.js' },
@@ -62,8 +60,9 @@ export const featuredProject: FeaturedProjectData = {
   routes: [
     { method: 'GET', path: '/api/v1/orders' },
     { method: 'POST', path: '/api/v1/orders' },
-    { method: 'GET', path: '/api/v1/menu' },
-    { method: 'PUT', path: '/api/v1/menu/:id' }
+    { method: 'GET', path: '/api/v1/tables' },
+    { method: 'PUT', path: '/api/v1/tables/:id' },
+    { method: 'POST', path: '/api/v1/products' }
   ],
   githubUrl: '#',
   type: 'backend',
@@ -77,7 +76,6 @@ export const projects: ProjectData[] = [
     tech: [
       { icon: SiJavascript, name: 'JavaScript' },
       { icon: FaCss3, name: 'CSS' },
-      { icon: AiOutlineHtml5, name: 'HTML' },
       { icon: SiGooglegemini, name: 'Gemini' }
     ],
     type: 'frontend',
@@ -87,28 +85,29 @@ export const projects: ProjectData[] = [
     isLive: true
   },
   {
-    title: 'Authentication Microservice',
+    title: 'Daily Diet API',
     description:
-      'Secure authentication service with JWT, refresh tokens, role-based access control, and OAuth2 integration.',
+      "REST API for tracking daily meals and diet compliance. Built as a practical challenge from Rocketseat's Node.js course.",
     tech: [
       { icon: IoLogoNodejs, name: 'Node.js' },
-      { icon: SiNestjs, name: 'NestJS' },
+      { icon: SiFastify, name: 'Fastify' },
+      { icon: SiTypescript, name: 'TypeScript' },
       { icon: SiPostgresql, name: 'PostgreSQL' }
     ],
     type: 'backend',
     githubUrl: '#'
-  },
-  {
-    title: 'E-commerce Platform',
-    description:
-      'Full-stack e-commerce solution with payment processing, inventory management, and admin dashboard.',
-    tech: [
-      { icon: RiNextjsLine, name: 'Next.js' },
-      { icon: SiPrisma, name: 'Prisma' },
-      { icon: SiMongodb, name: 'MongoDB' }
-    ],
-    type: 'fullstack',
-    githubUrl: '#',
-    demoUrl: '#'
   }
+  // {
+  //   title: 'E-commerce Platform',
+  //   description:
+  //     'Full-stack e-commerce solution with payment processing, inventory management, and admin dashboard.',
+  //   tech: [
+  //     { icon: RiNextjsLine, name: 'Next.js' },
+  //     { icon: SiPrisma, name: 'Prisma' },
+  //     { icon: SiMongodb, name: 'MongoDB' }
+  //   ],
+  //   type: 'fullstack',
+  //   githubUrl: '#',
+  //   demoUrl: '#'
+  // }
 ]
