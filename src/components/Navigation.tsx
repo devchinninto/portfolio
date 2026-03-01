@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'motion/react'
 
 const navItems = [
   { label: 'Projects', id: 'projects' },
-  { label: 'Technical Skillset', id: 'skills' },
-  { label: 'Thoughts', id: 'thoughts' }
+  { label: 'Technical Skillset', id: 'skills' }
+  // { label: 'Thoughts', id: 'thoughts' }
 ]
 
 const navAnimation = {
@@ -21,7 +21,13 @@ function Logo() {
   )
 }
 
-function NavLink({ item, onClick }: { item: { label: string; id: string }; onClick?: () => void }) {
+function NavLink({
+  item,
+  onClick
+}: {
+  item: { label: string; id: string }
+  onClick?: () => void
+}) {
   return (
     <a
       href={`#${item.id}`}
@@ -35,7 +41,9 @@ function NavLink({ item, onClick }: { item: { label: string; id: string }; onCli
 }
 
 function NavSeparator() {
-  return <span className="text-[#00FF88] opacity-30 select-none text-xs">●</span>
+  return (
+    <span className="text-[#00FF88] opacity-30 select-none text-xs">●</span>
+  )
 }
 
 function NavLinks() {
@@ -44,13 +52,22 @@ function NavLinks() {
       {navItems.flatMap((item, index) =>
         index === 0
           ? [<NavLink key={item.id} item={item} />]
-          : [<NavSeparator key={`sep-${index}`} />, <NavLink key={item.id} item={item} />]
+          : [
+              <NavSeparator key={`sep-${index}`} />,
+              <NavLink key={item.id} item={item} />
+            ]
       )}
     </div>
   )
 }
 
-function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) {
+function HamburgerButton({
+  isOpen,
+  onClick
+}: {
+  isOpen: boolean
+  onClick: () => void
+}) {
   return (
     <button
       onClick={onClick}
@@ -76,7 +93,13 @@ function HamburgerButton({ isOpen, onClick }: { isOpen: boolean; onClick: () => 
   )
 }
 
-function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function MobileMenu({
+  isOpen,
+  onClose
+}: {
+  isOpen: boolean
+  onClose: () => void
+}) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -98,7 +121,13 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
   )
 }
 
-function NavContent({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
+function NavContent({
+  isOpen,
+  onToggle
+}: {
+  isOpen: boolean
+  onToggle: () => void
+}) {
   return (
     <div className="w-full max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
       <Logo />
