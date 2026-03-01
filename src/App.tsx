@@ -1,5 +1,6 @@
 import { Navigation } from './components/Navigation'
 import { Hero } from './components/Hero'
+import { SkillsSection } from './components/SkillsSection'
 import './styles/index.css'
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Navigation />
       <main>
         <Hero />
+        <SkillsSection />
       </main>
     </div>
   )
