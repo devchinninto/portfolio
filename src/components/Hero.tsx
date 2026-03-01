@@ -1,4 +1,14 @@
 import { motion } from 'motion/react'
+import { SiGithub, SiLinkedin } from 'react-icons/si'
+import { FiMail } from 'react-icons/fi'
+import { TerminalShell } from './Terminal'
+
+// Social links
+const SOCIAL_LINKS = [
+  { label: 'GitHub', href: 'https://github.com/marcellealves', icon: SiGithub },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/marcellealves', icon: SiLinkedin },
+  { label: 'Email', href: 'mailto:marcelle@example.com', icon: FiMail }
+]
 
 // Main bio content
 const HERO_CONTENT = {
@@ -21,16 +31,6 @@ const DEV_PROFILE = {
   available: true
 }
 
-// Color of the 'buttons' on the code editor
-function WindowControls() {
-  return (
-    <div className="flex gap-2 mb-5 lg:mb-6">
-      <div className="w-3 h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-gradient-to-br from-red-500 to-red-600" />
-      <div className="w-3 h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600" />
-      <div className="w-3 h-3 lg:w-3.5 lg:h-3.5 rounded-full bg-gradient-to-br from-green-500 to-green-600" />
-    </div>
-  )
-}
 
 type ButtonVariant = 'primary' | 'outline'
 
@@ -105,48 +105,75 @@ function ArrayValue({ items }: { items: string[] }) {
   )
 }
 
-// Renders DEV_PROFILE as a syntax-highlighted JS object
+// Renders DEV_PROFILE as a syntax-highlighted JS object inside a terminal card
 function CodeEditorCard() {
   const { name, role, stack, learning, available } = DEV_PROFILE
 
   return (
-    <div className="glass-code-card rounded-[20px] p-4 sm:p-6 lg:p-7 overflow-x-auto">
-      <WindowControls />
-      <pre className="font-['JetBrains_Mono'] text-[11px] sm:text-[13px] lg:text-[14px] leading-relaxed">
-        <code>
-          <span className={keywordColor}>const</span>{' '}
-          <span className={symbolColor}>developer</span>{' '}
-          <span className={keywordColor}>=</span>{' '}
-          <span className={symbolColor}>{'{'}</span>
-          {'\n'}
-          {'  '}
-          <span className={symbolColor}>name:</span>{' '}
-          <StringValue value={name} />
-          <span className={symbolColor}>,</span>
-          {'\n'}
-          {'  '}
-          <span className={symbolColor}>role:</span>{' '}
-          <StringValue value={role} />
-          <span className={symbolColor}>,</span>
-          {'\n'}
-          {'  '}
-          <span className={symbolColor}>stack:</span>{' '}
-          <ArrayValue items={stack} />
-          <span className={symbolColor}>,</span>
-          {'\n'}
-          {'  '}
-          <span className={symbolColor}>learning:</span>{' '}
-          <ArrayValue items={learning} />
-          <span className={symbolColor}>,</span>
-          {'\n'}
-          {'  '}
-          <span className={symbolColor}>available:</span>{' '}
-          <span className={keywordColor}>{String(available)}</span>
-          {'\n'}
-          <span className={symbolColor}>{'}'}</span>
-          <span className={keywordColor}>;</span>
-        </code>
-      </pre>
+    <TerminalShell title="developer.js">
+      <div className="p-3 sm:p-4 lg:p-5 font-['JetBrains_Mono'] text-[10px] sm:text-xs lg:text-sm space-y-1.5 overflow-x-auto">
+        <div>
+          <span className="text-[#00FF88]">$ </span>
+          <span className="text-[#00FF88] font-bold">node developer.js</span>
+        </div>
+        <pre className="leading-relaxed pt-1">
+          <code>
+            <span className={keywordColor}>const</span>{' '}
+            <span className={symbolColor}>developer</span>{' '}
+            <span className={keywordColor}>=</span>{' '}
+            <span className={symbolColor}>{'{'}</span>
+            {'\n'}
+            {'  '}
+            <span className={symbolColor}>name:</span>{' '}
+            <StringValue value={name} />
+            <span className={symbolColor}>,</span>
+            {'\n'}
+            {'  '}
+            <span className={symbolColor}>role:</span>{' '}
+            <StringValue value={role} />
+            <span className={symbolColor}>,</span>
+            {'\n'}
+            {'  '}
+            <span className={symbolColor}>stack:</span>{' '}
+            <ArrayValue items={stack} />
+            <span className={symbolColor}>,</span>
+            {'\n'}
+            {'  '}
+            <span className={symbolColor}>learning:</span>{' '}
+            <ArrayValue items={learning} />
+            <span className={symbolColor}>,</span>
+            {'\n'}
+            {'  '}
+            <span className={symbolColor}>available:</span>{' '}
+            <span className={keywordColor}>{String(available)}</span>
+            {'\n'}
+            <span className={symbolColor}>{'}'}</span>
+            <span className={keywordColor}>;</span>
+          </code>
+        </pre>
+        <div className="flex items-center pt-0.5">
+          <span className="inline-block w-2 h-4 bg-gray-400 animate-pulse" />
+        </div>
+      </div>
+    </TerminalShell>
+  )
+}
+
+function SocialLinks() {
+  return (
+    <div className="flex justify-center lg:justify-start gap-4">
+      {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target={href.startsWith('mailto') ? undefined : '_blank'}
+          rel="noopener noreferrer"
+          aria-label={label}
+          className="text-[#8892b0] hover:text-[#00FF88] transition-colors duration-200"
+        >
+          <Icon size={18} />
+        </a>
+      ))}
     </div>
   )
 }
@@ -185,6 +212,8 @@ export function Hero() {
                 <HeroButton key={btn.label} {...btn} />
               ))}
             </div>
+
+            <SocialLinks />
           </motion.div>
 
           {/* Right — code card */}

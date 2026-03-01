@@ -40,6 +40,7 @@ export type ProjectData = {
   githubUrl: string
   demoUrl?: string
   imageUrl?: string
+  routes?: Route[]
   isLive?: boolean
 }
 
@@ -95,7 +96,14 @@ export const projects: ProjectData[] = [
       { icon: SiPostgresql, name: 'PostgreSQL' }
     ],
     type: 'backend',
-    githubUrl: '#'
+    githubUrl: '#',
+    routes: [
+      { method: 'POST', path: '/meals' },
+      { method: 'GET', path: '/meals' },
+      { method: 'PUT', path: '/meals/:id' },
+      { method: 'DELETE', path: '/meals/:id' },
+      { method: 'GET', path: '/meals/summary' }
+    ]
   }
   // {
   //   title: 'E-commerce Platform',
