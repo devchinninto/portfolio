@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { SiGithub, SiLinkedin, SiYoutube } from 'react-icons/si'
 import { FiMail, FiFolder, FiDownload } from 'react-icons/fi'
 import { TerminalShell } from './Terminal'
+import avatarImg from '../assets/pfp.png'
 
 // Social links
 const SOCIAL_LINKS = [
@@ -25,7 +26,7 @@ const HERO_CONTENT = {
   name: 'Marcelle Alves',
   role: 'Junior Backend Developer · Software Engineering Student',
   bio: 'Former translator and functional linguistics specialist turned developer. Focused on clean architecture, REST APIs, and DevOps — driven by curiosity for backend systems, security, and whatever language comes next.',
-  avatar: 'src/assets/pfp.png',
+  avatar: avatarImg,
   buttons: [
     {
       label: 'View Projects',

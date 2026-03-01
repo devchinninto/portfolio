@@ -13,7 +13,7 @@ function App() {
         <Hero />
         <SkillsSection />
         <Projects />
-        <Footer />
+<Footer />
       </main>
     </div>
   )

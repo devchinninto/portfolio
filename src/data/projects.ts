@@ -1,4 +1,6 @@
 import type { IconType } from 'react-icons'
+import project1Img from '../assets/project-1.png'
+import project2Img from '../assets/project-2.gif'
 import { IoLogoNodejs } from 'react-icons/io5'
 import { FaCss3 } from 'react-icons/fa'
 // import { RiNextjsLine } from 'react-icons/ri'
@@ -101,7 +103,7 @@ export const projects: ProjectData[] = [
     type: 'frontend',
     githubUrl: 'https://github.com/devchinninto/a_gaming',
     demoUrl: 'https://devchinninto.github.io/a_gaming/',
-    imageUrl: 'src/assets/project-1.png',
+    imageUrl: project1Img,
     isLive: true
   },
   {
@@ -113,7 +115,7 @@ export const projects: ProjectData[] = [
       { icon: FaCss3, name: 'CSS' }
     ],
     type: 'fullstack',
-    imageUrl: 'src/assets/project-2.gif',
+    imageUrl: project2Img,
     githubUrl: 'https://github.com/devchinninto/mundo-pet'
   }
 ]
