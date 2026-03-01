@@ -4,13 +4,14 @@ import { SiGithub, SiLinkedin, SiYoutube } from 'react-icons/si'
 import { FiMail, FiFolder, FiDownload } from 'react-icons/fi'
 import { TerminalShell } from './Terminal'
 import avatarImg from '../assets/pfp.png'
+import cvPdf from '../assets/CV_EN.pdf'
 
 // Social links
 const SOCIAL_LINKS = [
   { label: 'GitHub', href: 'https://github.com/devchinninto', icon: SiGithub },
   {
     label: 'LinkedIn',
-    href: 'linkedin.com/in/marcellealves-dev',
+    href: 'https://www.linkedin.com/in/marcellealves-dev/',
     icon: SiLinkedin
   },
   { label: 'Email', href: 'mailto:marcellealves.dev@gmail.com', icon: FiMail },
@@ -37,8 +38,9 @@ const HERO_CONTENT = {
     {
       label: 'Download CV',
       variant: 'outline' as const,
-      href: '#',
-      icon: FiDownload
+      href: cvPdf,
+      icon: FiDownload,
+      download: 'Marcelle_Alves_CV.pdf'
     }
   ]
 }
@@ -59,12 +61,14 @@ function HeroButton({
   label,
   variant,
   href,
-  icon: Icon
+  icon: Icon,
+  download
 }: {
   label: string
   variant: ButtonVariant
   href: string
   icon: React.ElementType
+  download?: string
 }) {
   const base =
     'inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-medium text-sm sm:text-base transition-all duration-300'
@@ -75,7 +79,7 @@ function HeroButton({
   }
 
   return (
-    <a href={href} className={styles[variant]}>
+    <a href={href} download={download} className={styles[variant]}>
       <Icon size={16} />
       {label}
     </a>
