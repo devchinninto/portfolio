@@ -67,7 +67,7 @@ export const featuredProject: FeaturedProjectData = {
     { method: 'PUT', path: '/api/v1/tables/:id' },
     { method: 'POST', path: '/api/v1/products' }
   ],
-  githubUrl: '#',
+  githubUrl: 'https://github.com/devchinninto/restaurant_api',
   type: 'backend',
   isLive: true
 }
