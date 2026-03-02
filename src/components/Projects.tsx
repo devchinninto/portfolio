@@ -67,7 +67,6 @@ function SectionTitle() {
   )
 }
 
-
 function FeaturedProjectInfo({
   title,
   description,
@@ -113,6 +112,7 @@ function FeaturedProject({
   description,
   tech,
   routes,
+  githubUrl,
   type,
   isLive
 }: FeaturedProjectData) {
@@ -129,7 +129,7 @@ function FeaturedProject({
           title={title}
           description={description}
           tech={tech}
-          githubUrl={''}
+          githubUrl={githubUrl}
           type={type}
           isLive={isLive}
         />
@@ -291,7 +291,11 @@ function ProjectsGrid() {
 
 export function Projects() {
   return (
-    <section id="projects" aria-label="Curated Projects" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section
+      id="projects"
+      aria-label="Curated Projects"
+      className="py-24 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-[1440px] mx-auto">
         <SectionTitle />
         <FeaturedProject {...featuredProject} />
