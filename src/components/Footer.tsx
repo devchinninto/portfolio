@@ -1,6 +1,11 @@
 import { motion } from 'motion/react'
+import { useLanguage } from '../contexts/LanguageContext'
+import { translations } from '../i18n/translations'
 
 export function Footer() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
@@ -14,10 +19,7 @@ export function Footer() {
       }}
     >
       <div className="max-w-[1440px] mx-auto text-center">
-        <p className="text-sm text-[#00FF88]">
-          © 2026 Marcelle Alves. Fueled by caffeine, curiosity, and the
-          occasional existential crisis about semicolons.
-        </p>
+        <p className="text-sm text-[#00FF88]">{t.footer.text}</p>
       </div>
     </motion.footer>
   )

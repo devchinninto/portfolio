@@ -11,6 +11,8 @@ import {
   type FeaturedProjectData,
   type ProjectData
 } from '../data/projects'
+import { useLanguage } from '../contexts/LanguageContext'
+import { translations } from '../i18n/translations'
 
 // --- Sub-components ---
 const typeConfig: Record<
@@ -55,6 +57,9 @@ function LiveBadge() {
 }
 
 function SectionTitle() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
@@ -62,7 +67,7 @@ function SectionTitle() {
       viewport={{ once: true }}
       className="text-[28px] sm:text-[34px] lg:text-[40px] font-bold text-gradient-white text-center mb-8 sm:mb-12 lg:mb-16"
     >
-      Curated Projects
+      {t.projects.heading}
     </motion.h2>
   )
 }
@@ -75,6 +80,9 @@ function FeaturedProjectInfo({
   type,
   isLive
 }: Omit<FeaturedProjectData, 'routes'>) {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <div className="flex flex-col justify-between h-full">
       <div>
@@ -100,7 +108,7 @@ function FeaturedProjectInfo({
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF88] hover:text-[#00FF88] text-gray-300 text-sm font-medium transition-colors w-full justify-center"
         >
           <FaGithub className="w-4 h-4" />
-          View Source
+          {t.projects.viewSource}
         </a>
       </div>
     </div>
@@ -204,6 +212,9 @@ function ProjectCardActions({
   githubUrl: string
   demoUrl?: string
 }) {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <div className="flex gap-3">
       <a
@@ -213,7 +224,7 @@ function ProjectCardActions({
         className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00FF88] hover:text-[#00FF88] text-gray-300 text-sm font-medium transition-colors"
       >
         <FaGithub className="w-4 h-4" />
-        Source
+        {t.projects.source}
       </a>
       {demoUrl && (
         <a
@@ -223,7 +234,7 @@ function ProjectCardActions({
           className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#00FF88] text-black text-sm font-medium hover:bg-[#00FF88]/90 transition-colors"
         >
           <LuExternalLink className="w-4 h-4" />
-          Visit
+          {t.projects.visit}
         </a>
       )}
     </div>
@@ -279,10 +290,10 @@ function ProjectCard({
   )
 }
 
-function ProjectsGrid() {
+function ProjectsGrid({ items }: { items: ProjectData[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-      {projects.map((project, index) => (
+      {items.map((project, index) => (
         <ProjectCard key={project.title} project={project} index={index} />
       ))}
     </div>
@@ -290,6 +301,19 @@ function ProjectsGrid() {
 }
 
 export function Projects() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
+  const translatedFeatured = {
+    ...featuredProject,
+    description: t.projects.featuredDescription
+  }
+
+  const translatedProjects = projects.map((p, i) => ({
+    ...p,
+    description: t.projects.list[i] ?? p.description
+  }))
+
   return (
     <section
       id="projects"
@@ -298,8 +322,8 @@ export function Projects() {
     >
       <div className="max-w-[1440px] mx-auto">
         <SectionTitle />
-        <FeaturedProject {...featuredProject} />
-        <ProjectsGrid />
+        <FeaturedProject {...translatedFeatured} />
+        <ProjectsGrid items={translatedProjects} />
       </div>
     </section>
   )

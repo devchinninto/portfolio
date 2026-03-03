@@ -1,13 +1,14 @@
 import { motion } from 'motion/react'
 import type { IconType } from 'react-icons'
 import { TechPill } from './TechPill'
+import { useLanguage } from '../contexts/LanguageContext'
+import { translations } from '../i18n/translations'
 import { RiJavaLine, RiNextjsLine, RiTailwindCssFill } from 'react-icons/ri'
 import { IoLogoNodejs } from 'react-icons/io5'
 import {
   SiFastify,
   SiPostgresql,
   SiPrisma,
-  // SiGithubactions,
   SiInsomnia,
   SiJsonwebtokens,
   SiExpress,
@@ -17,14 +18,14 @@ import {
 import { TbBrandMysql } from 'react-icons/tb'
 import { FaReact, FaCss3, FaDocker, FaGithub, FaGitAlt } from 'react-icons/fa'
 import { AiOutlineHtml5 } from 'react-icons/ai'
-// import { VscVscodeInsiders } from 'react-icons/vsc'
 
 type Skill = { icon: IconType | string; name: string; emoji?: boolean }
-type SkillCategory = { title: string; skills: Skill[] }
+type SkillCategoryKey = 'languages' | 'backend' | 'frontend' | 'devTools'
+type SkillCategory = { key: SkillCategoryKey; skills: Skill[] }
 
 const skillCategories: SkillCategory[] = [
   {
-    title: 'Languages',
+    key: 'languages',
     skills: [
       { icon: RiJavaLine, name: 'Java' },
       { icon: SiJavascript, name: 'JavaScript' },
@@ -32,7 +33,7 @@ const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    title: 'Backend & Architecture',
+    key: 'backend' as const,
     skills: [
       { icon: IoLogoNodejs, name: 'Node.js' },
       { icon: SiFastify, name: 'Fastify' },
@@ -44,7 +45,7 @@ const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    title: 'Frontend & UI',
+    key: 'frontend' as const,
     skills: [
       { icon: FaReact, name: 'React' },
       { icon: RiNextjsLine, name: 'Next.js' },
@@ -54,12 +55,10 @@ const skillCategories: SkillCategory[] = [
     ]
   },
   {
-    title: 'Dev Tools & Others',
+    key: 'devTools' as const,
     skills: [
-      // { icon: SiGithubactions, name: 'GitHub Actions' },
       { icon: FaGitAlt, name: 'Git' },
       { icon: FaGithub, name: 'Github' },
-      // { icon: VscVscodeInsiders, name: 'VS Code' },
       { icon: SiInsomnia, name: 'Insomnia' },
       { icon: SiJsonwebtokens, name: 'JWT' }
     ]
@@ -67,6 +66,9 @@ const skillCategories: SkillCategory[] = [
 ]
 
 export function SkillsSection() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <section
       id="skills"
@@ -80,13 +82,13 @@ export function SkillsSection() {
           viewport={{ once: true }}
           className="text-3xl sm:text-4xl md:text-[40px] font-bold text-gradient-white text-center mb-12 md:mb-16"
         >
-          Technical Skillset
+          {t.skills.heading}
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center">
           {skillCategories.map((category, index) => (
             <motion.article
-              key={category.title}
+              key={category.key}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -95,7 +97,7 @@ export function SkillsSection() {
               className="glass-card-dark rounded-[20px] p-6 md:p-8 transition-all duration-300"
             >
               <h3 className="text-base md:text-lg font-semibold text-gradient-cyan-green mb-4 md:mb-5">
-                {category.title}
+                {t.skills.categories[category.key]}
               </h3>
               <ul className="flex flex-wrap gap-2 md:gap-2.5 justify-center">
                 {category.skills.map((skill) => (

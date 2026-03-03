@@ -1,10 +1,11 @@
 import React from 'react'
 import { motion } from 'motion/react'
 import { SiGithub, SiLinkedin, SiYoutube } from 'react-icons/si'
-import { FiMail, FiFolder, FiDownload } from 'react-icons/fi'
+import { FiMail, FiFolder } from 'react-icons/fi'
 import { TerminalShell } from './Terminal'
 import avatarImg from '../assets/pfp.png'
-import cvPdf from '../assets/CV_EN.pdf'
+import { useLanguage } from '../contexts/LanguageContext'
+import { translations } from '../i18n/translations'
 
 // Social links
 const SOCIAL_LINKS = [
@@ -34,14 +35,14 @@ const HERO_CONTENT = {
       variant: 'primary' as const,
       href: '#projects',
       icon: FiFolder
-    },
-    {
-      label: 'Download CV',
-      variant: 'outline' as const,
-      href: cvPdf,
-      icon: FiDownload,
-      download: 'Marcelle_Alves_CV.pdf'
     }
+    // {
+    //   label: 'Download CV',
+    //   variant: 'outline' as const,
+    //   href: cvPdf,
+    //   icon: FiDownload,
+    //   download: 'Marcelle_Alves_CV.pdf'
+    // }
   ]
 }
 
@@ -211,7 +212,13 @@ function SocialLinks() {
 
 // Hero
 export function Hero() {
-  const { name, role, bio, avatar, buttons } = HERO_CONTENT
+  const { language } = useLanguage()
+  const t = translations[language]
+
+  const { name, avatar } = HERO_CONTENT
+  const role = t.hero.role
+  const bio = t.hero.bio
+  const buttons = [{ ...HERO_CONTENT.buttons[0], label: t.hero.viewProjects }]
 
   return (
     <section className="pt-24 pb-16 px-4 sm:pt-28 sm:pb-20 sm:px-6 lg:pt-32 lg:pb-24 lg:px-8">

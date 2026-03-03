@@ -1,10 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-
-const navItems = [
-  { label: 'Projects', id: 'projects' },
-  { label: 'Technical Skillset', id: 'skills' }
-]
+import { useLanguage } from '../contexts/LanguageContext'
+import { translations } from '../i18n/translations'
 
 const navAnimation = {
   initial: { y: -100 },
@@ -17,6 +14,38 @@ function Logo() {
     <div className="font-['JetBrains_Mono'] text-lg text-gradient-logo">
       &gt;_ chinninto.dev.br
     </div>
+  )
+}
+
+function LanguageToggle() {
+  const { language, toggleLanguage } = useLanguage()
+
+  return (
+    <button
+      onClick={toggleLanguage}
+      className="font-['JetBrains_Mono'] text-xs flex items-center gap-1.5 cursor-pointer"
+      aria-label="Toggle language"
+    >
+      <span
+        className={
+          language === 'en'
+            ? 'text-[#00FF88]'
+            : 'text-[#8892b0] hover:text-[#e0e7ff] transition-colors'
+        }
+      >
+        EN
+      </span>
+      <span className="text-[#00FF88] opacity-30 select-none">·</span>
+      <span
+        className={
+          language === 'pt'
+            ? 'text-[#00FF88]'
+            : 'text-[#8892b0] hover:text-[#e0e7ff] transition-colors'
+        }
+      >
+        PT
+      </span>
+    </button>
   )
 }
 
@@ -45,10 +74,10 @@ function NavSeparator() {
   )
 }
 
-function NavLinks() {
+function NavLinks({ items }: { items: { label: string; id: string }[] }) {
   return (
     <div className="hidden md:flex items-center gap-6">
-      {navItems.flatMap((item, index) =>
+      {items.flatMap((item, index) =>
         index === 0
           ? [<NavLink key={item.id} item={item} />]
           : [
@@ -94,10 +123,12 @@ function HamburgerButton({
 
 function MobileMenu({
   isOpen,
-  onClose
+  onClose,
+  items
 }: {
   isOpen: boolean
   onClose: () => void
+  items: { label: string; id: string }[]
 }) {
   return (
     <AnimatePresence>
@@ -110,7 +141,7 @@ function MobileMenu({
           className="md:hidden overflow-hidden border-t border-[#00FF88]/20"
         >
           <div className="flex flex-col items-center gap-7 py-7 px-8">
-            {navItems.map((item) => (
+            {items.map((item) => (
               <NavLink key={item.id} item={item} onClick={onClose} />
             ))}
           </div>
@@ -122,30 +153,50 @@ function MobileMenu({
 
 function NavContent({
   isOpen,
-  onToggle
+  onToggle,
+  items
 }: {
   isOpen: boolean
   onToggle: () => void
+  items: { label: string; id: string }[]
 }) {
   return (
     <div className="w-full max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
       <Logo />
-      <NavLinks />
-      <HamburgerButton isOpen={isOpen} onClick={onToggle} />
+      <div className="flex items-center gap-5">
+        <NavLinks items={items} />
+        <LanguageToggle />
+        <HamburgerButton isOpen={isOpen} onClick={onToggle} />
+      </div>
     </div>
   )
 }
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const { language } = useLanguage()
+  const t = translations[language]
+
+  const navItems = [
+    { label: t.nav.projects, id: 'projects' },
+    { label: t.nav.skills, id: 'skills' }
+  ]
 
   return (
     <motion.nav
       {...navAnimation}
       className="fixed top-0 left-0 right-0 z-50 navbar-glass"
     >
-      <NavContent isOpen={isOpen} onToggle={() => setIsOpen((prev) => !prev)} />
-      <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <NavContent
+        isOpen={isOpen}
+        onToggle={() => setIsOpen((prev) => !prev)}
+        items={navItems}
+      />
+      <MobileMenu
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        items={navItems}
+      />
     </motion.nav>
   )
 }
