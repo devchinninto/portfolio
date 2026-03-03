@@ -44,6 +44,7 @@ export type ProjectData = {
   imageUrl?: string
   routes?: Route[]
   isLive?: boolean
+  status?: 'refactoring'
 }
 
 // --- Data ---
@@ -104,7 +105,8 @@ export const projects: ProjectData[] = [
     githubUrl: 'https://github.com/devchinninto/a_gaming',
     demoUrl: 'https://devchinninto.github.io/a_gaming/',
     imageUrl: project1Img,
-    isLive: true
+    isLive: true,
+    status: 'refactoring'
   },
   {
     title: 'PetShop Scheduling System',
@@ -116,6 +118,7 @@ export const projects: ProjectData[] = [
     ],
     type: 'fullstack',
     imageUrl: project2Img,
-    githubUrl: 'https://github.com/devchinninto/mundo-pet'
+    githubUrl: 'https://github.com/devchinninto/mundo-pet',
+    status: 'refactoring'
   }
 ]

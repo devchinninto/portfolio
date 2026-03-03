@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { FaGithub } from 'react-icons/fa'
-import { LuTerminal, LuExternalLink } from 'react-icons/lu'
+import { LuTerminal, LuExternalLink, LuWrench } from 'react-icons/lu'
 import { TechPill } from './TechPill'
 import { TerminalWindow } from './Terminal'
 import {
@@ -40,6 +40,15 @@ function TypePill({ type }: { type: ProjectType }) {
       style={{ color, background: bg, borderColor: `${color}44` }}
     >
       {label}
+    </span>
+  )
+}
+
+function RefactoringBadge() {
+  return (
+    <span className="flex items-center gap-1 text-[10px] font-medium text-[#F59E0B] border border-[#F59E0B]/25 bg-[#F59E0B]/8 px-2 py-0.5 rounded-full">
+      <LuWrench size={9} />
+      Refactoring
     </span>
   )
 }
@@ -267,6 +276,7 @@ function ProjectCard({
         <div className="flex items-center gap-2 mb-2">
           <TypePill type={project.type} />
           {project.isLive && <LiveBadge />}
+          {project.status === 'refactoring' && <RefactoringBadge />}
         </div>
         <h3 className="text-[22px] text-gradient-white mb-3">
           {project.title}
