@@ -72,16 +72,16 @@ function HeroButton({
   download?: string
 }) {
   const base =
-    'inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-medium text-sm sm:text-base transition-all duration-300'
+    'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium text-xs transition-all duration-300'
 
   const styles: Record<ButtonVariant, string> = {
-    primary: `${base} bg-[#00FF88] text-[#0A0A0A] hover:shadow-[0_4px_20px_rgba(0,255,136,0.4)] hover:scale-105`,
+    primary: `${base} bg-[#00FF88]/10 text-[#00FF88] border border-[#00FF88]/30 hover:bg-[#00FF88]/20 hover:border-[#00FF88]/60 hover:shadow-[0_2px_12px_rgba(0,255,136,0.2)]`,
     outline: `${base} border border-[#00FF88] text-[#00FF88] hover:bg-[rgba(0,255,136,0.1)] hover:shadow-[0_4px_20px_rgba(0,255,136,0.2)]`
   }
 
   return (
     <a href={href} download={download} className={styles[variant]}>
-      <Icon size={16} />
+      <Icon size={12} />
       {label}
     </a>
   )
@@ -193,7 +193,7 @@ function CodeEditorCard() {
 
 function SocialLinks() {
   return (
-    <div className="flex justify-center lg:justify-start gap-4">
+    <div className="flex gap-4">
       {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
         <a
           key={label}
@@ -245,13 +245,13 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
               {buttons.map((btn) => (
                 <HeroButton key={btn.label} {...btn} />
               ))}
+              <span className="text-[#2a3a5c]">·</span>
+              <SocialLinks />
             </div>
-
-            <SocialLinks />
           </motion.div>
 
           {/* Right — code card */}
